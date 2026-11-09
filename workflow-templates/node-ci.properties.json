@@ -1,0 +1,7 @@
+{
+  "name": "Node CI (Vebses)",
+  "description": "Install, lint, typecheck and build a Node / Next.js project on every push and pull request.",
+  "iconName": "octicon check-circle",
+  "categories": ["JavaScript", "TypeScript", "Node"],
+  "filePatterns": ["package.json"]
+}
