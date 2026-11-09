@@ -1,0 +1,29 @@
+# Copy this file into a repository as .github/dependabot.yml
+# Weekly grouped updates keep the PR count low: one PR for production minor/patch bumps,
+# one for dev dependencies, and a monthly one for GitHub Actions. Majors arrive as separate PRs.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Tbilisi
+    open-pull-requests-limit: 5
+    groups:
+      production-dependencies:
+        dependency-type: production
+        update-types: [minor, patch]
+      development-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]
+    commit-message:
+      prefix: "chore(deps)"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "chore(ci)"
