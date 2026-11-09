@@ -1,0 +1,38 @@
+# Node CI — install, lint, typecheck and build on every push to the default branch and on pull requests.
+# Scripts that a project does not define are skipped (`--if-present`), so this works for any package.json.
+name: CI
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22        # pin to the version used in production
+          cache: npm              # change to pnpm / yarn if the project uses them
+
+      - run: npm ci
+
+      - run: npm run lint --if-present
+
+      - run: npm run typecheck --if-present
+
+      - run: npm run build --if-present
+        env:
+          CI: true
