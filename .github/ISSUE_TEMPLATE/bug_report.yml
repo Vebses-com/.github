@@ -1,0 +1,42 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Where?
+      placeholder: Page URL or screen name
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Production
+        - Preview deployment
+        - Local
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      placeholder: iPhone 15 / Safari 18, MacBook / Chrome 131
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, console errors, anything else
